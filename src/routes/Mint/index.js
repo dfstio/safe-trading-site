@@ -44,72 +44,71 @@ const Mint = () => {
       <Row>
       <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Бабочки"
-              title="Выведи сам новый вид бабочек"
+              creator="Safe Trading USD"
+              title="Your USD balance is"
               link="/mint/butterflies"
-              price="От 500 руб до 45000 руб"
-              description="Выведи новый вид бабочек - выбери свой из 50 тысяч вариантов. Соедини вместе виды: Акрея, Аматузида, Брассолида, Волнянка, Данаида, Морфо, Нимфалида, Серпокрылка, Урания"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmRXNX7PuJgPktMdzDgQoqcrULJnDNfq7QqH14NrxMCXQ8"
-              key="Butterflies Mint"
+              price="10,000"
+              description="LUSD token can be deposited and withdrawn thru SWIFT, Ethereum USDT and Tron USDT networks"
+              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmbARy1hHoHrW2mH3R2rkWKpUSayeQ77XKNA7aW5BVy1hE"
+              key="LUSD Mint"
 
               />
         </Col>
 
       <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Your NFT Token"
-              title="Create your own private NFT token"
+              creator="Safe Trading EUR"
+              title="Your EUR balance is"
               link="/mint/custom"
-              price="$10 for private NFT token or $100 for public NFT token"
-              description="Private NFT token will be visible only to you on NFT Virtuoso marketplace, except when you'll put it for sale. Public NFT token is always visible to everyone on NFT Virtuoso marketplace"
+              price="20,000"
+              description="LEUR token can be deposited and withdrawn thru SWIFT"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/private.png"
-              key="Private Mint"
+              key="LEUR Mint"
 
               />
         </Col>
 
         <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="DJ Korean"
-              title="DJ Korean Последний герой"
-              price="USD 100"
-              description="Последний герой - описание"
+              creator="Safe Trading ETH"
+              title="Your ETH balance is"
+              price="5.6574329"
+              description="LETH token can be deposited and withdrawn thru Ethereum (ETH) and Polygon (WETH) networks"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmQAGbHxf9q1p1ocsp12LKtwMV8msYGW6N4A9yiGSovuiS"
-              key="DJ Korean"
+              key="ETH Mint"
 
               />
         </Col>
         <Col xxl={8}  xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="DJ Korean"
-              title="DJ Korean Push The Button"
-              price="USD 100"
-              description="Push The Button - описание"
+              creator="Bitcoin"
+              title="Your BTC balance is"
+              price="0.57584397"
+              description="BTC can be deposited and withdrawn thru Bitcoin, Ethereum (WBTC) and Polygon (WBTC) networks"
               image= "https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmdLdqRJZ2T4bdPJhZBkXGgovgqXe6z58xwCTqdUygeQxi"
-              key="DJ Korean 2"
+              key="BTC Mint"
 
               />
         </Col>
         <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Dokar Japanese Taping"
-              title="Taping Video and Instruction"
-              price="USD 50"
-              description="Резистентное тейпирование морщин в области глаз (гусиные лапки)"
+              creator="Gold warehouse receipts"
+              title="You hold receipts for"
+              price="12.5 kg of gold"
+              description="Gold can be deposited and withdrawn in bank office only"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/dokar.jpg"
-              key="Doctor Mint"
+              key="Gold receipts Mint"
 
               />
         </Col>
                 <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Artist L"
-              title="Глубина NFT"
-              price="USD 5000"
-              description="Описание картины глубина NFT"
+              creator="Gold on metal account"
+              title="Your gold account balance is"
+              price="5210 grams"
+              description="Gold on account can be deposited and withdrawn in bank office only"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/deepnft.jpg"
-
-              key="Artist L Mint"
+              key="Gold account Mint"
 
               />
         </Col>
