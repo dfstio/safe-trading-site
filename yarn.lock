@@ -18186,10 +18186,10 @@ which@^2.0.1, which@^2.0.2:
   dependencies:
     isexe "^2.0.0"
 
-winston-cloudwatch@^3.1.1:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/winston-cloudwatch/-/winston-cloudwatch-3.2.0.tgz#03448b8c0c8118393dc8b53a3cea193dc31e0933"
-  integrity sha512-optG+/ZjZuZowcms1b4J6K+DsG9qsdZ3tWoLB8laVW33vHuI+aadSW0Lfk3DQBVT5SvAPgd/5TlLbiTMp0vOBg==
+winston-cloudwatch@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/winston-cloudwatch/-/winston-cloudwatch-6.0.1.tgz#4bb613d2bb3aef340aef805748f4a0304b05c9ce"
+  integrity sha512-Bxq2+OC/6vRV7C+jrNmq/v5NUnNCyOazCHRYvxskVFCyNh/IYTy79gvOXwoqvEy698dPDIAnHFP7SNNxHCGFZA==
   dependencies:
     async "^3.1.0"
     chalk "^4.0.0"
