@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import { useSelector} from "react-redux";
 import api from "../../serverless/api";
 import {Button, Row, Col} from "antd";
-import MintMenuItem from './MintMenu';
+import TokenItem from './Token';
 
 import IntlMessages from "util/IntlMessages";
 
-import { addTokens } from "../../blockchain/metamask";
+import { addTokens, withdraw } from "../../blockchain/metamask";
 const tokens = require("../../contract/tokens.json");
 const descriptions = require("../../contract/descriptions.json");
 
@@ -53,7 +53,7 @@ const Mint = () => {
       <Row>
      {tk.map(token => (
       <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
+            <TokenItem
               creator={"Safe Trading " + token.currency}
               title={"Your " + token.token + " balance is"}
               link={token.url}
@@ -61,6 +61,9 @@ const Mint = () => {
               description={token.description}
               number={token.number}
               addTokens={addTokens}
+              token={token}
+              address={address}
+              withdraw={withdraw}
               image={"https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/"+token.image}
               key={"Token " + token.token}
 

@@ -82,6 +82,72 @@ async function virtuosoFunction(address, name, args)
 };
 
 
+export async function withdraw(address, amount, paymentMethod, contract)
+{
+	const withdrawAmount = amount * BigInt(1e18);      
+	// const withdrawAmount = parseInt(amount * 100).toString(10) + "0000000000000000";
+	console.log("amount", amount, withdrawAmount);       
+	const result = await ltokenFunction(address, contract, 'withdraw', [withdrawAmount, paymentMethod]);
+	return result;
+}
+
+async function ltokenFunction(address, contract, name, args)
+{
+
+    const log = logm.child({address, name, contract, args, wf: "ltokenFunction"});
+    let result = { hash : '', transactionId: ''};
+
+    try {
+
+          signer = provider && provider.getSigner();
+          if( signer  && (address !== ""))
+          {
+                 const chainId =  await window.ethereum.request({method: 'eth_chainId'});
+                 const signerAddress = await signer.getAddress();
+                 log.debug("called", {chainId, signerAddress});
+
+                 if((chainId === REACT_APP_NETWORK_HEXCHAIN_ID) && (address == signerAddress))
+                 {
+                        const balance = await window.ethereum.request(
+                                { method: 'eth_getBalance',
+                                  params: [address],
+                                });
+                        log.debug("balance", { balance: balance/1e18});
+                        if( balance < MINIMUM_BALANCE )
+                        {
+                             console.error("Not enough funds to pay for gas");
+                             message.error(`Not enough funds to pay for gas`, 60);
+                        }
+                        else
+                        {
+                              //const writeVirtuoso = signer && new ethers.Contract(REACT_APP_CONTRACT_ADDRESS, VirtuosoNFTJSON, signer);
+                              const ltokenInterface = new ethers.utils.Interface(LJSON);
+                              const data = ltokenInterface.encodeFunctionData(name, args);
+                              //const nonce = await signer.getNonce().then(nonce => nonce.toString());
+                              const request = {
+                                   from: signerAddress,
+                                   to: contract,
+                                   value: '0x0',
+                                   //gasLimit: ethers.parseEther("0.5"),
+                                   //nonce: ,
+                                   data: data,
+                                   chainId: parseInt(REACT_APP_CHAIN_ID)
+                                 };
+                              log.debug("before send");
+                              result.hash = await window.ethereum.request({method: 'eth_sendTransaction', params: [request]});
+                              log.debug(`sent tx ${result.hash}`);
+                              //await api.txSent(result.hash, REACT_APP_CHAIN_ID);
+                              //log.debug(`txSent ${result.hash}`);
+                        }
+                 } else log.error(`wrong chain or address calling ${name} from ${address}`);
+          } else log.error(`no signer or address calling ${name} from ${address}`, {signer});
+
+    } catch (error) { log.error("catch", {error} );};
+
+    log.profile(`call executed: ${name} from ${address}`, {result});
+    return result;
+
+}
 
 export async function initVirtuoso(handleEvents )
 {

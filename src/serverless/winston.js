@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 
 const { combine, timestamp, label, printf } = winston.format;
 
-const { WINSTON_ID, WINSTON_KEY, WINSTON_NAME, WINSTON_REGION, BRANCH, CHAIN_ID } = process.env;
+const { WINSTON_ID, WINSTON_KEY, WINSTON_NAME, WINSTON_REGION, BRANCH1, CHAIN_ID } = process.env;
 
 var meta = { id: uuidv4(), type: "functions", startTime: Date.now(), updated: true };
 
@@ -41,7 +41,7 @@ const winstonFormat = format((info, opts) => {
 const cloudwatchConfig = {
     level: 'info',
     logGroupName:  WINSTON_NAME ,
-    logStreamName: `${BRANCH}-${CHAIN_ID}`,
+    logStreamName: `safetrading-${CHAIN_ID}`,
     awsAccessKeyId: WINSTON_ID,
     awsSecretKey: WINSTON_KEY,
     awsRegion: WINSTON_REGION,
@@ -81,7 +81,7 @@ const transportDebug = [
 const debug = new winston.createLogger({
     level: 'debug',
     format: winston.format.combine( winston.format.json(), winstonFormat() ),
-    defaultMeta: { winstonBranch: BRANCH, winstonChainId: CHAIN_ID, winstonLevel: 'debug', winstonRepo: 'functions', winstonFunctionsMeta: meta },
+    defaultMeta: { winstonBranch: BRANCH1, winstonChainId: CHAIN_ID, winstonLevel: 'debug', winstonRepo: 'functions', winstonFunctionsMeta: meta },
     transports: transportDebug,
     exceptionHandlers: transportDebug,
     rejectionHandlers: transportDebug
@@ -90,7 +90,7 @@ const debug = new winston.createLogger({
 const info = new winston.createLogger({
     level: 'info',
     format: winston.format.combine( winston.format.json(), winstonFormat() ),
-    defaultMeta: { winstonBranch: BRANCH, winstonChainId: CHAIN_ID, winstonLevel: 'info', winstonRepo: 'functions', winstonFunctionsMeta: meta  },
+    defaultMeta: { winstonBranch: BRANCH1, winstonChainId: CHAIN_ID, winstonLevel: 'info', winstonRepo: 'functions', winstonFunctionsMeta: meta  },
     transports: transportInfo,
     exceptionHandlers: transportInfo,
     rejectionHandlers: transportInfo

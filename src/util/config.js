@@ -1,6 +1,6 @@
 module.exports = {
   footerText: 'Copyright © Safe Trading 2022  ',
-  footerAgreement: (` Terms and Conditions and Limited License `),
+  footerAgreement: (` Terms and Conditions `),
   footerAgreementLink: `https://nftvirtuoso.io/agreement/NFTVirtuosoAgreement.pdf`,
   footerContact: ` Contact us `,
   footerContracts: ` Add Safe Trading tokens to Metamask `,

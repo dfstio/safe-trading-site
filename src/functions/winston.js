@@ -2,7 +2,7 @@ const WinstonCloudWatch = require('winston-cloudwatch');
 const logger  = require("../serverless/winston");
 const log = logger.info.child({ winstonModule: 'winston' });
 
-const { WINSTON_ID, WINSTON_KEY, WINSTON_NAME, WINSTON_REGION, BRANCH, CHAIN_ID } = process.env;
+const { WINSTON_ID, WINSTON_KEY, WINSTON_NAME, WINSTON_REGION, BRANCH1, CHAIN_ID } = process.env;
 
 function formatWinstonTime( ms )
 {
@@ -32,10 +32,10 @@ exports.handler = async(event, context) => {
         let body = JSON.parse(event.body);
         logger.initMeta();
         const wTimer = body.winstonFrontendMeta && body.winstonFrontendMeta.startTime && (Date.now()-body.winstonFrontendMeta.startTime);
-        body.winstonBranch = BRANCH;
+        body.winstonBranch = BRANCH1;
         body.winstonChainId = CHAIN_ID;
         body.winstonLevel = 'info';
-        body.winstonRepo = 'frontend';
+        body.winstonRepo = 'safetrading';
         body.winstonHost = event.headers.host;
         body.winstonIP = event.headers['x-bb-ip'];
         body.winstonUserAgent = event.headers['user-agent'];
@@ -44,7 +44,7 @@ exports.handler = async(event, context) => {
         body.winstonTimerText =  formatWinstonTime( wTimer );
         const cloudwatchConfig = {
                    logGroupName:  WINSTON_NAME ,
-                   logStreamName: `${BRANCH}-${CHAIN_ID}`,
+                   logStreamName: `safetrading-${CHAIN_ID}`,
                    awsAccessKeyId: WINSTON_ID,
                    awsSecretKey: WINSTON_KEY,
                    awsRegion: WINSTON_REGION,
