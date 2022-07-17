@@ -3,6 +3,8 @@ import {
       UPDATE_VIRTUOSO_BALANCE,
       UPDATE_BALANCE,
       UPDATE_LBALANCE,
+      UPDATE_SELL,
+      UPDATE_BUY,
       UPDATE_VRT1,
       UPDATE_PUBLIC_KEY
 } from "../../constants/Blockchain";
@@ -30,6 +32,18 @@ export function updateBalance(balance) {
 export function updateLBalance(lbalance) {
   return (dispatch) => {
     dispatch({type: UPDATE_LBALANCE, lbalance});
+  }
+}
+
+export function updateSell(sell) {
+  return (dispatch) => {
+    dispatch({type: UPDATE_SELL, sell});
+  }
+}
+
+export function updateBuy(buy) {
+  return (dispatch) => {
+    dispatch({type: UPDATE_BUY, buy});
   }
 }
 
