@@ -15,7 +15,8 @@ const Mint = () => {
 
   const address = useSelector(({blockchain}) => blockchain.address);
   const virtuosoBalance = useSelector(({blockchain}) => blockchain.virtuosoBalance);
-  
+  const vb = virtuosoBalance/100;
+  const LUSD = "LUSD" + vb.toFixed(2);
 
   const explorerLUSD = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LUSD;
   const explorerLEUR = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LEUR;
@@ -55,7 +56,7 @@ const Mint = () => {
               creator="Safe Trading USD"
               title="Your LUSD balance is"
               link={explorerLUSD}
-              price={virtuosoBalance}
+              price={LUSD}
               description="LUSD token can be deposited and withdrawn thru SWIFT, Ethereum USDT and Tron USDT networks"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmbARy1hHoHrW2mH3R2rkWKpUSayeQ77XKNA7aW5BVy1hE"
               key="LUSD Mint"
