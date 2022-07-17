@@ -91,6 +91,14 @@ export async function withdraw(address, amount, paymentMethod, contract)
 	return result;
 }
 
+export async function deposit(address, amount, paymentMethod, contract)
+{
+	//const withdrawAmount = amount * BigInt(1e18);      
+	const withdrawAmount = parseInt(amount * 100).toString(10) + "0000000000000000";
+	console.log("amount", amount, withdrawAmount);        
+	const result = await ltokenFunction(address, contract, 'deposit', [withdrawAmount, paymentMethod]);
+	return result;
+}
 
 
 async function ltokenFunction(address, contract, name, args)

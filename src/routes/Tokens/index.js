@@ -6,7 +6,7 @@ import TokenItem from './Token';
 
 import IntlMessages from "util/IntlMessages";
 
-import { addTokens, withdraw } from "../../blockchain/metamask";
+import { addTokens, withdraw, deposit } from "../../blockchain/metamask";
 const tokens = require("../../contract/tokens.json");
 const descriptions = require("../../contract/descriptions.json");
 
@@ -64,6 +64,7 @@ const Mint = () => {
               token={token}
               address={address}
               withdraw={withdraw}
+              deposit={deposit}
               image={"https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/"+token.image}
               key={"Token " + token.token}
 
