@@ -6,12 +6,25 @@ import MintMenuItem from './MintMenu';
 
 import IntlMessages from "util/IntlMessages";
 
+import { checkBalance } from "../../blockchain/metamask";
+
 const { REACT_APP_VIRTUOSO_BRANCH } = process.env;
 
 
 const Mint = () => {
 
   const address = useSelector(({blockchain}) => blockchain.address);
+  const [usdBalance, setUSDBalance] = useState(0);
+  
+  useEffect(() => {
+            async function checkBalance() {
+
+                  const newUSDBalance = await checkBalance(address, "0x77a766AB84501872F023DD084901e674310d582d"); //LUSD
+                  if( newUSDBalance !== usdBalance) setUSDBalance(newUSDBalance);
+
+        }
+      checkBalance()
+      },[address]);
 
 
   function add()
@@ -47,7 +60,7 @@ const Mint = () => {
               creator="Safe Trading USD"
               title="Your USD balance is"
               link="/mint/butterflies"
-              price="10,000"
+              price={usdBalance}
               description="LUSD token can be deposited and withdrawn thru SWIFT, Ethereum USDT and Tron USDT networks"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmbARy1hHoHrW2mH3R2rkWKpUSayeQ77XKNA7aW5BVy1hE"
               key="LUSD Mint"
