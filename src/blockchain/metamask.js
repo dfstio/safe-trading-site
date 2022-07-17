@@ -10,15 +10,18 @@ const MINIMUM_BALANCE  = 1e17; // to switch to relay
 
 const ethers = require("ethers");
 const VirtuosoNFTJSON = require("../contract/NFTVirtuoso.json");
+const LUSDJSON = require("../contract/LUSD.json");
 
 
 const {REACT_APP_CONTRACT_ADDRESS, REACT_APP_CHAIN_ID, REACT_APP_RPCURL_METAMASK, REACT_APP_NETWORK_TOKEN,
-      REACT_APP_NETWORK_NAME, REACT_APP_NETWORK_HEXCHAIN_ID, REACT_APP_NETWORK_EXPLORER, REACT_APP_VIRTUOSO_URL} = process.env;
+      REACT_APP_NETWORK_NAME, REACT_APP_NETWORK_HEXCHAIN_ID, REACT_APP_NETWORK_EXPLORER, REACT_APP_VIRTUOSO_URL,
+      REACT_APP_LUSD, REACT_APP_LEUR, REACT_APP_LETH} = process.env;
 
 
 var provider = window.ethereum && new ethers.providers.Web3Provider(window.ethereum);
 var signer = provider && provider.getSigner();
 var readVirtuoso = provider && new ethers.Contract(REACT_APP_CONTRACT_ADDRESS, VirtuosoNFTJSON, provider);
+var readLUSD = provider && new ethers.Contract(REACT_APP_LUSD, LUSDJSON, provider);
 
 
 async function virtuosoFunction(address, name, args)
@@ -187,7 +190,9 @@ export async function getVirtuosoBalance(address)
 
            if(chainId === REACT_APP_NETWORK_HEXCHAIN_ID)
            {
-                virtuosoBalance = await readVirtuoso.virtuosoBalances( address);
+                const balance = await readLUSD.balanceOf( address);
+                console.log("LUSD balance", balance);
+                virtuosoBalance = balance / 1e16;
            };
     };
 
@@ -213,7 +218,7 @@ export async function isModerator(address)
 
 };
 
-export async function checkBalance(address, contractAddress)
+export async function checkBalance(address)
 {
     let balance = 0;
     if( address !== "")
@@ -223,11 +228,8 @@ export async function checkBalance(address, contractAddress)
 
            if(chainId === REACT_APP_NETWORK_HEXCHAIN_ID)
            {
-           		const data = "0x70a08231000000000000000000000000" + address.toString().slice(2,42);
-                balance = await window.ethereum.request({method: 'eth call', 
-                											params: [{'to':contractAddress,
-                													  'from': address,	
-                													  'data': data }]});
+           		const balance = await readLUSD.balanceOf( address);
+           		console.log("LUSD balance", balance);
            };
     };
 

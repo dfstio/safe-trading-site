@@ -19,7 +19,8 @@ const Mint = () => {
   useEffect(() => {
             async function checkBalance() {
 
-                  const newUSDBalance = await checkBalance(address, "0x77a766AB84501872F023DD084901e674310d582d"); //LUSD
+                  const newUSDBalanceWei = await checkBalance(address); //LUSD
+                  const newUSDBalance = newUSDBalanceWei/1e18;
                   if( newUSDBalance !== usdBalance) setUSDBalance(newUSDBalance);
 
         }
