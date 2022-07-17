@@ -10,18 +10,18 @@ const MINIMUM_BALANCE  = 1e17; // to switch to relay
 
 const ethers = require("ethers");
 const VirtuosoNFTJSON = require("../contract/NFTVirtuoso.json");
-const LUSDJSON = require("../contract/LUSD.json");
+const LJSON = require("../contract/LERC20.json");
+const tokens = require("../contract/tokens.json");
 
 
 const {REACT_APP_CONTRACT_ADDRESS, REACT_APP_CHAIN_ID, REACT_APP_RPCURL_METAMASK, REACT_APP_NETWORK_TOKEN,
-      REACT_APP_NETWORK_NAME, REACT_APP_NETWORK_HEXCHAIN_ID, REACT_APP_NETWORK_EXPLORER, REACT_APP_VIRTUOSO_URL,
-      REACT_APP_LUSD, REACT_APP_LEUR, REACT_APP_LETH} = process.env;
+      REACT_APP_NETWORK_NAME, REACT_APP_NETWORK_HEXCHAIN_ID, REACT_APP_NETWORK_EXPLORER, REACT_APP_VIRTUOSO_URL} = process.env;
 
 
 var provider = window.ethereum && new ethers.providers.Web3Provider(window.ethereum);
 var signer = provider && provider.getSigner();
 var readVirtuoso = provider && new ethers.Contract(REACT_APP_CONTRACT_ADDRESS, VirtuosoNFTJSON, provider);
-var readLUSD = provider && new ethers.Contract(REACT_APP_LUSD, LUSDJSON, provider);
+
 
 
 async function virtuosoFunction(address, name, args)
@@ -183,20 +183,28 @@ export async function metamaskDecrypt(key, address)
 export async function getVirtuosoBalance(address)
 {
     let virtuosoBalance = 0;
+    let lbalance = [0,0,0,0,0,0];
+    
     if( readVirtuoso  && (address !== ""))
     {
            const chainId =  await window.ethereum.request({method: 'eth_chainId'});
            //if(DEBUG) console.log("getVirtuosoBalance called on chain", chainId, "and address", address);
 
            if(chainId === REACT_APP_NETWORK_HEXCHAIN_ID)
-           {
-                const balance = await readLUSD.balanceOf( address);
-                console.log("getVirtuosoBalance LUSD balance", balance);
-                virtuosoBalance = balance / 1e16;
+           {	
+           		for( let i = 0; i < tokens.length; i++)
+           		{
+					  const readLERC20 = provider && new ethers.Contract(tokens[i].address, LJSON, provider);
+					  lbalance[i] = await readLERC20.balanceOf( address);
+					  console.log(tokens[i].token, "balance", parseFloat(lbalance[i]/1e18).toLocaleString('en') );
+					  
+                }
+                virtuosoBalance = lbalance[0] / 1e16;
+                
            };
     };
 
-    return virtuosoBalance;
+    return { virtuoso: virtuosoBalance, ltoken: lbalance };
 
 };
 

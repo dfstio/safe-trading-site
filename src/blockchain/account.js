@@ -42,11 +42,12 @@ const handleEvents = useCallback( async (params) => {
            if( adr === myaddress)
            {
                const newVirtuosoBalance = await getVirtuosoBalance(myaddress);
-               const vb100 = newVirtuosoBalance/100;
+               const vb100 = newVirtuosoBalance.virtuoso/100;
                const vb = "$" + vb100.toFixed(2);
-               if(DEBUG) console.log(`handleEvents: my balance ${virtuosoBalance} changed by ${params.args[1]} to ${newVirtuosoBalance} for ${params.args[2]}`);
+               if(DEBUG) console.log(`handleEvents: my balance ${virtuosoBalance} changed by ${params.args[1]} to ${newVirtuosoBalance.virtuoso} for ${params.args[2]}`);
 
-               dispatch(updateVirtuosoBalance(newVirtuosoBalance));
+               dispatch(updateVirtuosoBalance(newVirtuosoBalance.virtuoso));
+               dispatch(updateLBalance(newVirtuosoBalance.ltoken));
                message.info(`Your virtuoso balance changed to ${vb} for ${params.args[2]}`, 10);
 
            };
@@ -84,7 +85,8 @@ const handleChainChanged = useCallback( async (_chainId) => {
       const newVirtuosoBalance = await getVirtuosoBalance(newAddress);
       const newPublicKey = await getVirtuosoPublicKey(newAddress);
       dispatch(updateAddress(newAddress1));
-      dispatch(updateVirtuosoBalance(newVirtuosoBalance));
+      dispatch(updateVirtuosoBalance(newVirtuosoBalance.virtuoso));
+      dispatch(updateLBalance(newVirtuosoBalance.ltoken));
       dispatch(updatePublicKey(newPublicKey));
       message.info(`You've switched to the right chain ${REACT_APP_NETWORK_NAME} ${_chainId} with address ${newAddress1}`, 10);
 
@@ -109,7 +111,8 @@ const handleAccountsChanged = useCallback( async (accounts) => {
          dispatch(updateAddress(newAddress));
          const newVirtuosoBalance = await getVirtuosoBalance(newAddress);
          const newPublicKey = await getVirtuosoPublicKey(newAddress);
-         dispatch(updateVirtuosoBalance(newVirtuosoBalance));
+         dispatch(updateVirtuosoBalance(newVirtuosoBalance.virtuoso));
+         dispatch(updateLBalance(newVirtuosoBalance.ltoken));
          dispatch(updatePublicKey(newPublicKey));
          if(DEBUG) console.log('handleAccountsChanged: new address and balance', address, newAddress, newVirtuosoBalance);
          message.info(`Account changed to ${newAddress}`, 10);
@@ -124,7 +127,8 @@ const handleAccountsChanged = useCallback( async (accounts) => {
               dispatch(updateAddress(newAddress));
               const newVirtuosoBalance = await getVirtuosoBalance(newAddress);
               const newPublicKey = await getVirtuosoPublicKey(newAddress);
-              dispatch(updateVirtuosoBalance(newVirtuosoBalance));
+              dispatch(updateVirtuosoBalance(newVirtuosoBalance.virtuoso));
+              dispatch(updateLBalance(newVirtuosoBalance.ltoken));
               dispatch(updatePublicKey(newPublicKey));
               if(DEBUG) console.log(`useEffect Address ${newAddress} virtuosoBalance ${newVirtuosoBalance} publicKey ${newPublicKey}`);
     }

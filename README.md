@@ -11,7 +11,13 @@ It is NFT Virtuoso 4 frontend & functions repo
 ## TODO
 
 Payments DynamoDB
-Uniswap frame
+Uniswap frame https://app.uniswap.org/#/swap?chain=polygon_mumbai
 Safe frame https://gnosis-safe.io
+OTC exchange LEUR/LUSD
+Tornado cash LUSD
+Signature of KYC/AML
+WUSD Goerli
+Add to metamask token
+
 
 

@@ -2,6 +2,7 @@ import {
       UPDATE_ADDRESS,
       UPDATE_VIRTUOSO_BALANCE,
       UPDATE_BALANCE,
+      UPDATE_LBALANCE,
       UPDATE_VRT1,
       UPDATE_PUBLIC_KEY
 } from "../../constants/Blockchain";
@@ -25,6 +26,13 @@ export function updateBalance(balance) {
     dispatch({type: UPDATE_BALANCE, balance});
   }
 }
+
+export function updateLBalance(lbalance) {
+  return (dispatch) => {
+    dispatch({type: UPDATE_LBALANCE, lbalance});
+  }
+}
+
 export function updateVRT1(VRT1) {
   return (dispatch) => {
     dispatch({type: UPDATE_VRT1, VRT1});

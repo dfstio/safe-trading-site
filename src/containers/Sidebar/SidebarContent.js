@@ -43,23 +43,30 @@ const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline">
 
-            <Menu.Item key="mint">
-              <Link to="/mint">
-                <i className="icon icon-culture-calendar"/>
-                <IntlMessages id="sidebar.samplePage"/>
-              </Link>
-            </Menu.Item>
-
-            <Menu.Item key="marketplace">
-                  <Link to="/marketplace"><i className="icon icon-shopping-cart "/>
-                  <IntlMessages id="sidebar.algolia"/></Link>
-            </Menu.Item>
-               <Menu.Item key="settings">
-              <Link to="/settings">
-                <i className="icon icon-components"/>
-                <IntlMessages id="sidebar.settings"/>
-              </Link>
-            </Menu.Item>
+      <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="tokens">
+          <Link to="/tokens">
+            <i className="icon icon-culture-calendar"/>
+            <IntlMessages id="sidebar.tokens"/>
+          </Link>
+      </Menu.Item>
+      <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="trading">
+          <Link to="trading">
+            <i className="icon icon-shopping-cart"/>
+            <IntlMessages id="sidebar.trading"/>
+          </Link>
+      </Menu.Item>
+      <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="payments">
+          <Link to="/payments">
+            <i className="icon icon-culture-calendar"/>
+            <IntlMessages id="sidebar.payments"/>
+          </Link>
+      </Menu.Item>
+      <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="admin">
+          <Link to="/admin">
+            <i className="icon icon-components"/>
+            <IntlMessages id="sidebar.admin"/>
+          </Link>
+      </Menu.Item>
 
 
           </Menu>

@@ -1,7 +1,10 @@
 {
   "app.announced": "All trading with Safe Trading tokens is insured by Swiss Insurance Company",
   "sidebar.main": "Main",
-  "sidebar.samplePage": "Safe Trading Tokens",
+  "sidebar.tokens": "Tokens",
+  "sidebar.trading": "Trading",
+  "sidebar.payments": "Payments",
+  "sidebar.admin": "Administration",
   "sidebar.dashboard": "Dashboard",
   "sidebar.dashboard.crm": "Crm",
   "sidebar.components": "Components",

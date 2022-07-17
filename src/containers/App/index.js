@@ -86,7 +86,7 @@ const App = (props) => {
   }, [layoutType, navStyle]);
 
   if (location.pathname === '/') {
-    return (<Redirect to={'/mint'}/>);
+    return (<Redirect to={'/tokens'}/>);
   }
 
   const currentAppLocale = AppLocale[locale.locale];
