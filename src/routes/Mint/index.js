@@ -62,7 +62,7 @@ const Mint = () => {
               link="/mint/custom"
               price="20,000"
               description="LEUR token can be deposited and withdrawn thru SWIFT"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/private.png"
+              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmR9W1QjKnTfKhBQCGDM53jQtbFZQJNmDDTPJcacoDpfYC"
               key="LEUR Mint"
 
               />
@@ -74,7 +74,7 @@ const Mint = () => {
               title="Your ETH balance is"
               price="5.6574329"
               description="LETH token can be deposited and withdrawn thru Ethereum (ETH) and Polygon (WETH) networks"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmQAGbHxf9q1p1ocsp12LKtwMV8msYGW6N4A9yiGSovuiS"
+              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmecWSZmjyRzzfVEx4qksNL4Qde5JeQMwGvcqyyb6L3Rod"
               key="ETH Mint"
 
               />
@@ -85,7 +85,7 @@ const Mint = () => {
               title="Your BTC balance is"
               price="0.57584397"
               description="BTC can be deposited and withdrawn thru Bitcoin, Ethereum (WBTC) and Polygon (WBTC) networks"
-              image= "https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmdLdqRJZ2T4bdPJhZBkXGgovgqXe6z58xwCTqdUygeQxi"
+              image= "https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmPFVf47TupZ3VnC1HRd2ARwaEh8nogyE3ypaTs1V7ZDEk"
               key="BTC Mint"
 
               />
@@ -96,7 +96,7 @@ const Mint = () => {
               title="You hold receipts for"
               price="12.5 kg of gold"
               description="Gold can be deposited and withdrawn in bank office only"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/dokar.jpg"
+              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmaLGsErRCMxpKX9PBjXfMPdhY8sce4SZw179juChiHCoo"
               key="Gold receipts Mint"
 
               />
@@ -107,7 +107,7 @@ const Mint = () => {
               title="Your gold account balance is"
               price="5210 grams"
               description="Gold on account can be deposited and withdrawn in bank office only"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/deepnft.jpg"
+              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmTRUBh8JxTr3jfdYX2EVYUheVLHhGvUDRyCqhuZC1MTHc"
               key="Gold account Mint"
 
               />

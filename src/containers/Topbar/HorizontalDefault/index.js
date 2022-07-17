@@ -111,7 +111,7 @@ const HorizontalDefault = () => {
 
                 style={{"fontSize": "22px", "paddingLeft": "10px"}}
                 >
-            NFT Virtuoso
+            Safe Trading
             </div>
 {/*
             <div className="gx-header-search gx-d-none gx-d-lg-flex">
