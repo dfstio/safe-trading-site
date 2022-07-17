@@ -9,7 +9,7 @@ const MintMenuItem = ({ title, creator, description, price, link, image }) => {
     <div className="gx-product-item gx-product-vertical" >
     <Card
         title={creator}
-        extra={ <a href={link}><span className="gx-link">Create</span></a>}
+        extra={ <a href={link} target="_blank"><span className="gx-link">Explore</span></a>}
         cover={<img alt="example" src={image}/>}
         bordered={false}
         >

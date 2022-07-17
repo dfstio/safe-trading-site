@@ -191,7 +191,7 @@ export async function getVirtuosoBalance(address)
            if(chainId === REACT_APP_NETWORK_HEXCHAIN_ID)
            {
                 const balance = await readLUSD.balanceOf( address);
-                console.log("LUSD balance", balance);
+                console.log("getVirtuosoBalance LUSD balance", balance);
                 virtuosoBalance = balance / 1e16;
            };
     };
@@ -229,7 +229,7 @@ export async function checkBalance(address)
            if(chainId === REACT_APP_NETWORK_HEXCHAIN_ID)
            {
            		const balance = await readLUSD.balanceOf( address);
-           		console.log("LUSD balance", balance);
+           		console.log("checkBalance LUSD balance", balance);
            };
     };
 

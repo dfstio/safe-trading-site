@@ -8,20 +8,23 @@ import IntlMessages from "util/IntlMessages";
 
 import { checkBalance } from "../../blockchain/metamask";
 
-const { REACT_APP_VIRTUOSO_BRANCH } = process.env;
+const { REACT_APP_VIRTUOSO_BRANCH, REACT_APP_LUSD, REACT_APP_LEUR, REACT_APP_LETH, REACT_APP_NETWORK_EXPLORER } = process.env;
 
 
 const Mint = () => {
 
   const address = useSelector(({blockchain}) => blockchain.address);
-  const [usdBalance, setUSDBalance] = useState(0);
+  const [usdBalance, setUSDBalance] = useState("LUSD 0.00");
+  const explorerURL = "https://mumbai.polygonscan.com/address/";
+  const explorerLUSD = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LUSD;
   
   useEffect(() => {
             async function checkBalance() {
 
                   const newUSDBalanceWei = await checkBalance(address); //LUSD
-                  const newUSDBalance = newUSDBalanceWei/1e18;
+                  const newUSDBalance = "LUSD " + (newUSDBalanceWei/1e18).toString();
                   if( newUSDBalance !== usdBalance) setUSDBalance(newUSDBalance);
+                  console.log("newUSDBalance", newUSDBalance);
 
         }
       checkBalance()
@@ -59,8 +62,8 @@ const Mint = () => {
       <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
               creator="Safe Trading USD"
-              title="Your USD balance is"
-              link="/mint/butterflies"
+              title="Your LUSD balance is"
+              link={explorerLUSD}
               price={usdBalance}
               description="LUSD token can be deposited and withdrawn thru SWIFT, Ethereum USDT and Tron USDT networks"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmbARy1hHoHrW2mH3R2rkWKpUSayeQ77XKNA7aW5BVy1hE"
@@ -72,7 +75,7 @@ const Mint = () => {
       <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
               creator="Safe Trading EUR"
-              title="Your EUR balance is"
+              title="Your LEUR balance is"
               link="/mint/custom"
               price="20,000"
               description="LEUR token can be deposited and withdrawn thru SWIFT"
@@ -85,7 +88,7 @@ const Mint = () => {
         <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
               creator="Safe Trading ETH"
-              title="Your ETH balance is"
+              title="Your LETH balance is"
               price="5.6574329"
               description="LETH token can be deposited and withdrawn thru Ethereum (ETH) and Polygon (WETH) networks"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmecWSZmjyRzzfVEx4qksNL4Qde5JeQMwGvcqyyb6L3Rod"
@@ -95,8 +98,8 @@ const Mint = () => {
         </Col>
         <Col xxl={8}  xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Bitcoin"
-              title="Your BTC balance is"
+              creator="Safe Trading Bitcoin"
+              title="Your LBTC balance is"
               price="0.57584397"
               description="BTC can be deposited and withdrawn thru Bitcoin, Ethereum (WBTC) and Polygon (WBTC) networks"
               image= "https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmPFVf47TupZ3VnC1HRd2ARwaEh8nogyE3ypaTs1V7ZDEk"
@@ -106,10 +109,10 @@ const Mint = () => {
         </Col>
         <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Gold warehouse receipts"
+              creator="Safe Trading Gold"
               title="You hold receipts for"
               price="12.5 kg of gold"
-              description="Gold can be deposited and withdrawn in bank office only"
+              description="Gold warehouse receipts can be deposited and withdrawn in bank office only"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmaLGsErRCMxpKX9PBjXfMPdhY8sce4SZw179juChiHCoo"
               key="Gold receipts Mint"
 
@@ -117,10 +120,10 @@ const Mint = () => {
         </Col>
                 <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
             <MintMenuItem
-              creator="Gold on metal account"
+              creator="Safe Trading Metal Account"
               title="Your gold account balance is"
               price="5210 grams"
-              description="Gold on account can be deposited and withdrawn in bank office only"
+              description="Gold on metal account can be deposited and withdrawn in bank office only"
               image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmTRUBh8JxTr3jfdYX2EVYUheVLHhGvUDRyCqhuZC1MTHc"
               key="Gold account Mint"
 
