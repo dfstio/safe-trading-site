@@ -16,7 +16,7 @@ const Mint = () => {
   const address = useSelector(({blockchain}) => blockchain.address);
   const virtuosoBalance = useSelector(({blockchain}) => blockchain.virtuosoBalance);
   const vb = virtuosoBalance/100;
-  const LUSD = "LUSD" + vb.toFixed(2);
+  const LUSD = "LUSD " + vb.toFixed(2);
 
   const explorerLUSD = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LUSD;
   const explorerLEUR = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LEUR;
