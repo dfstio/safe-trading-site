@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import {isMobile} from 'react-device-detect';
 import {useDispatch, useSelector} from "react-redux";
 import {message} from 'antd';
-import {updateAddress, updateVirtuosoBalance, updatePublicKey} from "../appRedux/actions";
+import {updateAddress, updateVirtuosoBalance, updateLBalance, updatePublicKey} from "../appRedux/actions";
 import { metamaskLogin,
          initAccount,
          getVirtuosoBalance,

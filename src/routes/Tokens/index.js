@@ -7,7 +7,7 @@ import MintMenuItem from './MintMenu';
 import IntlMessages from "util/IntlMessages";
 
 import { checkBalance } from "../../blockchain/metamask";
-const tokens = require("../contract/tokens.json");
+const tokens = require("../../contract/tokens.json");
 
 const { REACT_APP_VIRTUOSO_BRANCH, REACT_APP_LUSD, REACT_APP_LEUR, REACT_APP_LETH, REACT_APP_NETWORK_EXPLORER } = process.env;
 

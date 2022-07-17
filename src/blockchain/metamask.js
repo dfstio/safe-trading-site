@@ -226,24 +226,6 @@ export async function isModerator(address)
 
 };
 
-export async function checkBalance(address)
-{
-    let balance = 0;
-    if( address !== "")
-    {
-           const chainId =  await window.ethereum.request({method: 'eth_chainId'});
-           //if(DEBUG) console.log("isModerator called on chain", chainId, "and address", address);
-
-           if(chainId === REACT_APP_NETWORK_HEXCHAIN_ID)
-           {
-           		const balance = await readLUSD.balanceOf( address);
-           		console.log("checkBalance LUSD balance", balance);
-           };
-    };
-
-    return balance;
-
-};
 
 
 
