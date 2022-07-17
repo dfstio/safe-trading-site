@@ -1,5 +1,5 @@
 module.exports = {
-  footerText: 'Copyright © NFT Virtuoso 2021  ',
+  footerText: 'Copyright © Safe Trading 2022  ',
   footerAgreement: (` Terms and Conditions and Limited License `),
   footerAgreementLink: `https://nftvirtuoso.io/agreement/NFTVirtuosoAgreement.pdf`,
   footerContact: ` Contact us `,
