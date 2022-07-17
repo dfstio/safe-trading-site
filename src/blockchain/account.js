@@ -155,12 +155,14 @@ const handleAccountsChanged = useCallback( async (accounts) => {
   if((address !== undefined) && (address !== ""))
   {
     metamaskText = address.slice(0,6)+"..."+address.slice(38,42);
+    /*
     if( virtuosoBalance !== undefined)
     {
-      const vb = virtuosoBalance/100;
-      topupText = "$" + vb.toFixed(2);
+      //const vb = virtuosoBalance/100;
+      topupText = "$" + parseFloat(virtuosoBalance/100).toLocaleString('en')//+ vb.toFixed(2); 
       //topup = "/api/create-checkout-session?type=mint&address=" + address.toString();
     };
+    */
     blockExplorer = REACT_APP_NETWORK_EXPLORER + "address/" + address;
     result =
     (

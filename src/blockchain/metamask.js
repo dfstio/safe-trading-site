@@ -615,6 +615,32 @@ async function switchChain()
       }
 };
 
+export async function addTokens(i)
+{
+
+  const log = logm.child({ wf: "addToken"});
+  console.log("add token", tokens[i].address,tokens[i].token );
+  try {
+ 		 await window.ethereum.request({ method: "wallet_watchAsset",
+					params:
+					{
+					 "type": "ERC20",
+					 options: {
+						address: tokens[i].address,
+						symbol:  tokens[i].token,
+						decimals: 18,
+						//image: 'https://foo.io/token-image.svg'
+						//image: 'https://safetrading.nftvirtuoso.io/',
+					 }}
+					});
+
+	 } catch (addError)
+	 {
+		 log.error("Adding contract failed:", {addError});
+		 message.error(`Adding contract failed: ${addError.code} ${addError.message}`, 60);
+	 }
+};
+
 
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

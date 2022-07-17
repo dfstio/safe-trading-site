@@ -3,6 +3,7 @@ module.exports = {
   footerAgreement: (` Terms and Conditions and Limited License `),
   footerAgreementLink: `https://nftvirtuoso.io/agreement/NFTVirtuosoAgreement.pdf`,
   footerContact: ` Contact us `,
+  footerContracts: ` Add Safe Trading tokens to Metamask `,
   footerEmail: `mailto:hello@nftvirtuoso.io`,
   accountingEmail: `mailto:accounting@nftvirtuoso.io`
 }

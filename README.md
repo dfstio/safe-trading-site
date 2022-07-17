@@ -18,6 +18,8 @@ Tornado cash LUSD
 Signature of KYC/AML
 WUSD Goerli
 Add to metamask token
+PDF/Powepoint Manual
+IMAGE in adding LERC20 in metamask.js
 
 
 

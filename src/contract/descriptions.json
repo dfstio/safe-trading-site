@@ -1,0 +1,6 @@
+[{"description":"LUSD token can be deposited and withdrawn thru SWIFT, Ethereum USDT and Tron USDT networks","image":"QmbARy1hHoHrW2mH3R2rkWKpUSayeQ77XKNA7aW5BVy1hE","currency":"USD"},
+{"description":"LEUR token can be deposited and withdrawn thru SWIFT","image":"QmR9W1QjKnTfKhBQCGDM53jQtbFZQJNmDDTPJcacoDpfYC","currency":"EUR"},
+{"description":"LETH token can be deposited and withdrawn thru Ethereum (ETH) and Polygon (WETH) networks","image":"QmecWSZmjyRzzfVEx4qksNL4Qde5JeQMwGvcqyyb6L3Rod","currency":"ETH"},
+{"description":"BTC can be deposited and withdrawn thru Bitcoin, Ethereum (WBTC) and Polygon (WBTC) networks","image":"QmPFVf47TupZ3VnC1HRd2ARwaEh8nogyE3ypaTs1V7ZDEk","currency":"BTC"},
+{"description":"Gold warehouse receipts can be deposited and withdrawn in bank office only","image":"QmaLGsErRCMxpKX9PBjXfMPdhY8sce4SZw179juChiHCoo","currency":"GLD"},
+{"description":"Gold on metal account can be deposited and withdrawn in bank office only","image":"QmTRUBh8JxTr3jfdYX2EVYUheVLHhGvUDRyCqhuZC1MTHc","currency":"MTL"}]
