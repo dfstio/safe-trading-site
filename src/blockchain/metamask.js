@@ -84,9 +84,9 @@ async function virtuosoFunction(address, name, args)
 
 export async function withdraw(address, amount, paymentMethod, contract)
 {
-	const withdrawAmount = amount * BigInt(1e18);      
-	// const withdrawAmount = parseInt(amount * 100).toString(10) + "0000000000000000";
-	console.log("amount", amount, withdrawAmount);       
+	//const withdrawAmount = amount * BigInt(1e18);      
+	const withdrawAmount = parseInt(amount * 100).toString(10) + "0000000000000000";
+	console.log("amount", amount, withdrawAmount);        
 	const result = await ltokenFunction(address, contract, 'withdraw', [withdrawAmount, paymentMethod]);
 	return result;
 }
