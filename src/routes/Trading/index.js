@@ -56,7 +56,7 @@ const Trading = () => {
         title={"Trade on UNISWAP"}
         bordered={false}
         >
-{/*}     <Form
+    <Form
         onValuesChange = {handleChange}
         key="formuniswap"
         layout="vertical"
@@ -66,6 +66,17 @@ const Trading = () => {
           buy: 0
         }}
       >
+    {tokens.map(token=> (
+        <Form.Item
+            name="contract"
+            key={"contract"+token.address}
+            style={{"marginBottom": "0px", "marginTop": "0px", "marginLeft": "100px"}}
+            >
+        {token.token + ": " + token.address}
+        </Form.Item>
+     ))}
+
+{/*}
       <Form.Item
             name="sellmsg"
             key="sellmsg"
@@ -91,7 +102,8 @@ const Trading = () => {
             <Radio value={token.id}  key={token.id+"buyr"}>{token.token}</Radio>
          ))}
           </Radio.Group>
-        </Form.Item>        
+        </Form.Item>    
+*/}            
     <Form.Item
 	  key="uniswapfarme"
 	  name="uniswapfarme"
@@ -111,21 +123,6 @@ const Trading = () => {
 		/>
 	</Form.Item> 	
 	</Form>	
-*/}
-
-      <iframe
-		  src={frameSrc}
-		  height="660px"
-		  width="100%"
-		  key="uniswapst"
-		  style={{
-			border: 0,
-			margin: 0,
-			display: "block",
-			borderRadius: "10px",
-			maxWidth: "600px",
-			minWidth: "300px"}}
-		/>
       </Card>		
    </div>
   )
