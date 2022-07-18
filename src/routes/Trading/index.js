@@ -70,9 +70,9 @@ const Trading = () => {
         <Form.Item
             name="contract"
             key={"contract"+token.address}
-            style={{"marginBottom": "0px", "marginTop": "0px", "marginLeft": "100px"}}
+            style={{"marginBottom": "0px", "marginTop": "0px", "marginLeft": "50px"}}
             >
-        {token.token + ": " + token.address}
+        {"Safe Trading " + token.currency + " (" + token.token + "): " + token.address}
         </Form.Item>
      ))}
 
