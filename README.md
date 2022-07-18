@@ -24,5 +24,12 @@ QR codes
 
 https://app.uniswap.org/#/swap?chain=polygon_mumbai
 
+Payment details for clients and SafeTrading with QR codes
+Approvals with data from contracts
+unprocessedDeposits
+List of contracts for Uniswap
+KYC - name country credit rating
+
+Goerli contracts
 
 
