@@ -1,0 +1,7 @@
+[
+{"id":0,"token":"WUSD","address":"0x7c81cA04fca9c1bc24E011F50Ad313D4A423F850","currency":"USD","name":"WUSD","owner":"0x07171714bE2b2e12B4F38270d446fB8bc82bb767"},
+{"id":1,"token":"WEUR","address":"0x4A126a9f358EA65fb1bC8b159f6964C39075fe54","currency":"EUR","name":"WEUR","owner":"0x07171714bE2b2e12B4F38270d446fB8bc82bb767"},
+{"id":2,"token":"WETH","address":"0x210EC22dD6b1c174E5cA1A261DD9791e0755cc6D","currency":"ETH","name":"WETH","owner":"0x07171714bE2b2e12B4F38270d446fB8bc82bb767"},
+{"id":3,"token":"WBTC","address":"0x81567264B07336F2cf6CC71104AcD84DE0EDaDec","currency":"BTC","name":"WBTC","owner":"0x07171714bE2b2e12B4F38270d446fB8bc82bb767"},
+{"id":4,"token":"WGLD","address":"0x12c8aceB52986f4F36FdC2E6C045457b64861088","currency":"GLD","name":"WGLD","owner":"0x07171714bE2b2e12B4F38270d446fB8bc82bb767"},
+{"id":5,"token":"WMTL","address":"0xE693a0FfC2a10eeb07F201d425aFb5AbE9B5391F","currency":"MTL","name":"WMTL","owner":"0x07171714bE2b2e12B4F38270d446fB8bc82bb767"}]
