@@ -1,6 +1,6 @@
 [
-{"id":0,"description":"SWIFT payment in USD or EUR","network":"SWIFT","name":"SWIFT"},
-{"id":1,"description":"Token transfer in Ethereum","network":"Ethereum","name":"Ethereum"},
+{"id":0,"description":"Token transfer in Ethereum","network":"Ethereum","name":"Ethereum"},
+{"id":1,"description":"SWIFT payment in USD or EUR","network":"SWIFT","name":"SWIFT"},
 {"id":2,"description":"Token transfer in Polygon","network":"Polygon","name":"Polygon"},
 {"id":3,"description":"Token transfer in Tron","network":"Tron","name":"Tron"},
 {"id":4,"description":"Token transfer from/to Binance","network":"Binance","name":"Binance"},
