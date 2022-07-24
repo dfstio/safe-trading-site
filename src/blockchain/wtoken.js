@@ -9,6 +9,15 @@ const wtokens = require("../contract/wtokens.json");
 const {REACT_APP_RPC_GOERLI, REACT_APP_SAFE_GOERLI} = process.env;
 const ethereumprovider = new ethers.providers.JsonRpcProvider(REACT_APP_RPC_GOERLI);
 
+
+export async function encodeFunctionCall(id, name, args)
+{
+	  console.log("encodeFunctionCall", id, name, args);
+	  const wtokenInterface = new ethers.utils.Interface(WJSON);
+	  const data = wtokenInterface.encodeFunctionData(name, args);
+	  return {to: wtokens[id].address, data};
+}
+
 export async function getEthereumDeposits(id, address)
 {
 	const contract = new ethers.Contract(wtokens[id].address, WJSON, ethereumprovider);

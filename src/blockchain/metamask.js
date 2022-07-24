@@ -106,7 +106,7 @@ export async function acceptDeposit(address, id, contract)
 
 export async function acceptWithdraw(address, id, contract)
 {      
-	const result = await ltokenFunction(address, contract, 'acceptWithdrow', [id]); //TODO
+	const result = await ltokenFunction(address, contract, 'acceptWithdraw', [id]); //TODO
 	return result;
 }
 
@@ -118,7 +118,7 @@ export async function rejectDeposit(address, id, contract)
 
 export async function rejectWithdraw(address, id, contract)
 {      
-	const result = await ltokenFunction(address, contract, 'rejectWithdrow', [id]); //TODO
+	const result = await ltokenFunction(address, contract, 'rejectWithdraw', [id]); //TODO
 	return result;
 }
 
@@ -168,7 +168,8 @@ async function ltokenFunction(address, contract, name, args)
                               result.hash = await window.ethereum.request({method: 'eth_sendTransaction', params: [request]});
                               log.debug(`sent tx ${result.hash}`);
                               //await api.txSent(result.hash, REACT_APP_CHAIN_ID);
-                              //log.debug(`txSent ${result.hash}`);
+                              log.debug(`txSent ${result.hash}`);
+                              message.info(`Transaction ${result.hash} sent by  ${name} function call`, 60);
                         }
                  } else log.error(`wrong chain or address calling ${name} from ${address}`);
           } else log.error(`no signer or address calling ${name} from ${address}`, {signer});

@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {Card, Row, Col, Button} from "antd";
+import {message} from 'antd';
 import { acceptWithdraw, rejectWithdraw } from "../../blockchain/metamask";
 import { getDeposits, getWithdraws } from "../../blockchain/ltoken";
+import { encodeFunctionCall } from "../../blockchain/wtoken";
+import { safeProposeTransaction } from "../../blockchain/safe";
 
 const paymentMethods = require("../../contract/paymentmethods.json");
 const { REACT_APP_OWNER_ADDRESS } = process.env;
@@ -19,7 +22,19 @@ const WithdrawRequest = ({ withdraw, address }) => {
    
    const handleAccept = async () => {
 		setLoadingAccept( true );	  
-		await acceptWithdraw(address, withdraw.request, withdraw.address);
+
+		const result = await acceptWithdraw(address, withdraw.request, withdraw.address);
+		if( result.hash !== '')
+		{
+			 message.info(`Withdraw ${withdraw.token} ${withdraw.request} accepted`, 60);
+			 const functionCall = await encodeFunctionCall(withdraw.id, "transfer", [withdraw.from, withdraw.amount]);
+			 safeProposeTransaction(functionCall.to, functionCall.data);	 
+		}
+		else
+		{
+			message.error(`Withdraw ${withdraw.token} ${withdraw.request} rejected by Metamask`, 60);
+			console.error("accept rejected by Metamask");
+		};
 		setLoadingAccept( false);
 	};
 	
