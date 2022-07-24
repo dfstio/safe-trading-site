@@ -62,6 +62,13 @@ const DepositRequest = ({ deposit, address }) => {
 			style={{"marginBottom": "10px"}}
       	/>
       	</Col>
+       	<Col xl={8} lg={12} md={12} sm={12} xs={24} key={"DepositListColDOB"+deposit.address.toString()+deposit.request.toString()}>
+      	<Meta
+			title={"Credit rating"}
+			description={deposit.client.rating}
+			style={{"marginBottom": "10px"}}
+      	/>
+      	</Col>
       	<Col xl={8} lg={12} md={12} sm={12} xs={24} key={"DepositListColAmount"+deposit.address.toString()+deposit.request.toString()}>
         <Meta
 			title={"Amount"}
