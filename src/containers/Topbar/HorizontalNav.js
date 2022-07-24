@@ -61,23 +61,20 @@ const HorizontalNav = () => {
             <IntlMessages id="sidebar.payments"/>
           </Link>
       </Menu.Item>
-	   <SubMenu popupClassName={getNavStyleSubMenuClass(navStyle)} key="admin"
-               title={<IntlMessages id="sidebar.admin"/>}>
+	  <Menu.Item key="admindeposits">
+		  <Link to="/deposits">
+			  <i className="icon icon-picker"/>
+			  <span><IntlMessages id="sidebar.deposits"/></span>
+		  </Link>
+	  </Menu.Item>
+	  
+	  <Menu.Item key="adminwithdraws">
+		  <Link to="/withdraws">
+			  <i className="icon icon-picker"/>
+			  <span><IntlMessages id="sidebar.withdraws"/></span>
+		  </Link>
+	  </Menu.Item>
 
-				  <Menu.Item key="admindeposits">
-					  <Link to="/deposits">
-						  <i className="icon icon-picker"/>
-						  <span><IntlMessages id="sidebar.deposits"/></span>
-					  </Link>
-				  </Menu.Item>
-				  
-				  <Menu.Item key="adminwithdraws">
-					  <Link to="/withdraws">
-						  <i className="icon icon-picker"/>
-						  <span><IntlMessages id="sidebar.withdraws"/></span>
-					  </Link>
-				  </Menu.Item>
-	   </SubMenu>
 	  <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="settings">
 		  <Link to="/settings">
 			<i className="icon icon-components"/>

@@ -1,8 +1,8 @@
 [
 {"id":0,"image": "ethereum.png","description":"Token transfer in Ethereum","network":"Ethereum","name":"Ethereum","prefix":"ethereum:","suffix":"?value=","decimals":"1000000000000000000","address":"0x8Db233eEbEc9286d89f56Fb7e623f3E29477876e"},
-{"id":1,"image": "swift.svg","description":"SWIFT payment in USD or EUR","network":"SWIFT","name":"SWIFT","prefix":"SEPA: ","suffix":", amount ","decimals":"1","address":"SWIFT SWQBCHZZXXX, IBAN CH3408781091959544000"},
-{"id":2,"image": "polygon.svg","description":"Token transfer in Polygon","network":"Polygon","name":"Polygon","prefix":"ethereum:","suffix":"?value=","decimals":"1000000000000000000","address":"0xe0dC5F0C488208eF33879657A0eaF051B9CDbc1f"},
+{"id":1,"image": "swift.png","description":"SWIFT payment in USD or EUR","network":"SWIFT","name":"SWIFT","prefix":"SEPA: ","suffix":", amount ","decimals":"1","address":"SWIFT SWQBCHZZXXX, IBAN CH3408781091959544000"},
+{"id":2,"image": "polygon.png","description":"Token transfer in Polygon","network":"Polygon","name":"Polygon","prefix":"ethereum:","suffix":"?value=","decimals":"1000000000000000000","address":"0xe0dC5F0C488208eF33879657A0eaF051B9CDbc1f"},
 {"id":3,"image": "tron.png","description":"Token transfer in Tron","network":"Tron","name":"Tron","prefix":"tron:","suffix":"?amount=","decimals":"1","address":"TPuW6mrhetFVWBjxNqjBP4HZZ7mbtNFzcn"},
-{"id":4,"image": "binanve.svg","description":"Token transfer from/to Binance","network":"Binance","name":"Binance","prefix":"ethereum:","suffix":"?value=","decimals":"1000000000000000000","address":"0xc4871d9f5E69BC594c1A0B489d9ADbACE86580cF"},
+{"id":4,"image": "binance.png","description":"Token transfer from/to Binance","network":"Binance","name":"Binance","prefix":"ethereum:","suffix":"?value=","decimals":"1000000000000000000","address":"0xc4871d9f5E69BC594c1A0B489d9ADbACE86580cF"},
 {"id":5,"image": "bitcoin.png","description":"BTC transfer in bitcoin network","network":"Bitcoin","name":"Bitcoin","prefix":"bitcoin:","suffix":"?amount=","decimals":"1","address":"bc1qnphynt9jzclcenjd2zsk8yy5lgn4530af3ax4x"}
 ]

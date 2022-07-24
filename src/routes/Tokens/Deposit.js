@@ -14,7 +14,7 @@ var QRCode = require('qrcode.react');
 const Deposit = ({item, address, deposit}) => {
 
 
-  const [modalText, setModalText] = useState("Please specify the amount to be deposited to account "
+  const [modalText, setModalText] = useState("Please specify the amount to be deposited to your account "
   											+ address);
   
   const [visible, setVisible] = useState(false);
@@ -34,7 +34,6 @@ const Deposit = ({item, address, deposit}) => {
 
   function createQrCode(id, value) {
         const qr = paymentMethods[id].prefix + paymentMethods[id].address + paymentMethods[id].suffix + (paymentMethods[id].decimals * value).toLocaleString('fullwide', {useGrouping:false});
-        console.log("qr: ", qr);
         return qr;
       } 
 
@@ -42,7 +41,7 @@ const Deposit = ({item, address, deposit}) => {
   const showModal = () => {
 
       setVisible(true);
-      setModalText("Please specify the amount to be deposited to account "
+      setModalText("Please specify the amount to be deposited to your account "
   											+ address );
       setLoading(false);
 
@@ -101,7 +100,7 @@ const Deposit = ({item, address, deposit}) => {
 
 
     return (
-        <span>
+        <span >
         {( address !== "")?(
         <Button type="primary"
             onClick={showModal}
@@ -131,6 +130,8 @@ const Deposit = ({item, address, deposit}) => {
           accepted:false
         }}
       >
+      <Row>
+      <Col>
         <Form.Item
           name="amount"
           key="amountd"
@@ -170,28 +171,32 @@ const Deposit = ({item, address, deposit}) => {
 				 ))}
 				  </Radio.Group>
         </Form.Item>
+        </Col>
+        <Col>
         <Form.Item
             name="paymentMethodQR"
-            key="paymentMethodQR"
+            key="paymentMethodQR" 
             >
-            	<div>
+            	<span>
         	    <QRCode
 					 value={qrText}
-					 size={200}
+					 size={300}
 					 level='H'
 					 includeMargin={true}
-					 imageSettings={{src:`https://res.cloudinary.com/virtuoso/image/fetch/h_100,q_100,f_auto/`,
+					 imageSettings={{src:"/payment/" + paymentMethods[paymentMethod].image,
                             width: 100,
                             height: 100
                             }}
 					 />
-				</div> 
+				</span> 
         </Form.Item>
+        </Col>
+        </Row>
         <Form.Item
             name="paymentMethodDescription"
             key="paymentMethodDescriptiond"
             >
-        {"Please transfer assets to " + paymentMethodAddress}
+        {"Please transfer assets to Safe Trading LLC account " + paymentMethodAddress}
         </Form.Item>
         <Form.Item
             name="sendEmail"
@@ -220,7 +225,7 @@ const Deposit = ({item, address, deposit}) => {
             name="accepted"
             key="acceptedd"
             valuePropName="checked"
-            style={{"marginTop": "0px", "marginBottom": "0px"}}
+            style={{"marginTop": "0px", "marginBottom": "15px"}}
             rules={[
           {
             validator: (_, value) =>
@@ -233,8 +238,10 @@ const Deposit = ({item, address, deposit}) => {
         <Form.Item
             name="deposit" 
             key="depositd" 
+            
             className="paymentMethod-sell-form_last-form-item"
             >
+            <span style={{ float: "right"}}>
             <Button
                  type="primary"
                  key="depositbutton"
@@ -244,6 +251,7 @@ const Deposit = ({item, address, deposit}) => {
             >
             Deposit
             </Button>
+            </span>  
           </Form.Item>
 
       </Form>
