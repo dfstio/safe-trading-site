@@ -104,6 +104,24 @@ export async function acceptDeposit(address, id, contract)
 	return result;
 }
 
+export async function acceptWithdraw(address, id, contract)
+{      
+	const result = await ltokenFunction(address, contract, 'acceptWithdrow', [id]); //TODO
+	return result;
+}
+
+export async function rejectDeposit(address, id, contract)
+{      
+	const result = await ltokenFunction(address, contract, 'rejectDeposit', [id]);
+	return result;
+}
+
+export async function rejectWithdraw(address, id, contract)
+{      
+	const result = await ltokenFunction(address, contract, 'rejectWithdrow', [id]); //TODO
+	return result;
+}
+
 async function ltokenFunction(address, contract, name, args)
 {
 

@@ -5,7 +5,7 @@ import DepositRequest from './DepositRequest';
 
 import IntlMessages from "util/IntlMessages";
 
-import { getUnprocessedDepositsCount, getUnprocessedDeposits, getEthereumDepositTime } from "../../blockchain/ltoken";
+import { getUnprocessedDepositsCount, getUnprocessedDeposits} from "../../blockchain/ltoken";
 
 const { REACT_APP_VIRTUOSO_BRANCH, REACT_APP_NETWORK_EXPLORER } = process.env;
 const tokens = require("../../contract/tokens.json");
@@ -47,11 +47,11 @@ const Deposits = () => {
 					   const deposits = await getUnprocessedDeposits(i);
 					   for(let j = 0; j < deposits.length; j++)
 					   {
-					   		let client = {"id":0,"address":"Unknown","name":"Unknown","country":"Unknown","DOB":"Unknown"};
+					   		let client = {"id":0,"address":"Unknown","name":"Unknown","country":"Unknown","DOB":"Unknown",rating:0};
 					   		try{
 					   			client = clients.find(user => user.address == deposits[j].from);
 					   		 } catch { 
-					   		  	client = {"id":0,"address":"Unknown","name":"Unknown","country":"Unknown","DOB":"Unknown"};
+					   		  	client = {"id":0,"address":"Unknown","name":"Unknown","country":"Unknown","DOB":"Unknown",rating:0};
 					   		 };
 
 					   		results.push({...deposits[j], ...tokens[i], 
@@ -108,7 +108,7 @@ const Deposits = () => {
     (    
 		 deposits.map(deposit=> (
 			   <DepositRequest 
-					 key = {"depositrequestkey"+deposit.address.toString()+deposit.request.toString()}
+					 key = {"depositrequestkey"+deposit.address.toString()+deposit.request.toString()+deposit.token}
 					 deposit={deposit}
 					 address={address}
 			   />  

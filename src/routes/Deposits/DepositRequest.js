@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Card, Row, Col, Button} from "antd";
-import { acceptDeposit } from "../../blockchain/metamask";
+import { acceptDeposit, rejectDeposit } from "../../blockchain/metamask";
 import { getEthereumDeposits } from "../../blockchain/wtoken";
 
 const { REACT_APP_OWNER_ADDRESS } = process.env;
@@ -9,14 +9,21 @@ const {Meta} = Card;
 
 const DepositRequest = ({ deposit, address }) => {
 
-   const [loading, setLoading] = useState(false);
+   const [loadingAccept, setLoadingAccept] = useState(false);
+   const [loadingReject, setLoadingReject] = useState(false);
    const [wdeposits, setWDeposits] = useState([]);
    const [depositsLoaded, setDepositsLoaded] = useState(false);
    
-   const handleOk = async () => {
-		setLoading( true );	  
-		await acceptDeposit(address, deposit.id, deposit.address);
-		setLoading( false);
+   const handleAccept = async () => {
+		setLoadingAccept( true );	  
+		await acceptDeposit(address, deposit.request, deposit.address);
+		setLoadingAccept( false);
+	};
+	
+   const handleReject = async () => {
+		setLoadingReject( true );	  
+		await rejectDeposit(address, deposit.request, deposit.address);
+		setLoadingReject( false);
 	};
 
      useEffect(() => {
@@ -62,7 +69,7 @@ const DepositRequest = ({ deposit, address }) => {
 			style={{"marginBottom": "10px"}}
       	/>
       	</Col>
-       	<Col xl={8} lg={12} md={12} sm={12} xs={24} key={"DepositListColDOB"+deposit.address.toString()+deposit.request.toString()}>
+       	<Col xl={8} lg={12} md={12} sm={12} xs={24} key={"DepositListColRating"+deposit.address.toString()+deposit.request.toString()}>
       	<Meta
 			title={"Credit rating"}
 			description={deposit.client.rating}
@@ -83,7 +90,7 @@ const DepositRequest = ({ deposit, address }) => {
 			style={{"marginBottom": "10px"}}
       	/>
       	</Col>
-      	 <Col xl={8} lg={12} md={12} sm={12} xs={24} key={"DepositListColAddress"+deposit.address.toString()+deposit.request.toString()}>
+      	 <Col xl={8} lg={12} md={12} sm={12} xs={24} key={"DepositListColPayment"+deposit.address.toString()+deposit.request.toString()}>
       	 <Meta
 			title={"Payment method"}
 			description={deposit.payment}
@@ -114,15 +121,26 @@ const DepositRequest = ({ deposit, address }) => {
      </div>
       <div>
       {( address == REACT_APP_OWNER_ADDRESS)?(
+      <div>
        <span style={{ float: "right"}}>
         <Button type="primary"
-            onClick={handleOk}
+            onClick={handleAccept}
             key="buttond"
-            loading={loading}
+            loading={loadingAccept}
           >
           Accept Deposit
           </Button>
-          </span>
+        </span>
+        <span style={{ float: "left"}}>
+        <Button type="primary"
+            onClick={handleReject}
+            key="buttond"
+            loading={loadingReject}
+          >
+          Reject Deposit
+          </Button>
+        </span>
+        </div>
         ):("")}
     </div>
 

@@ -1,132 +1,136 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useSelector} from "react-redux";
-import api from "../../serverless/api";
-import {Button, Row, Col} from "antd";
-import MintMenuItem from './MintMenu';
+import {Button, Row, Col, Card, Form} from "antd";
+import WithdrawRequest from './WithdrawRequest';
 
 import IntlMessages from "util/IntlMessages";
 
-import { checkBalance } from "../../blockchain/metamask";
+import { getUnprocessedWithdrawsCount, getUnprocessedWithdraws} from "../../blockchain/ltoken";
 
-const { REACT_APP_VIRTUOSO_BRANCH, REACT_APP_LUSD, REACT_APP_LEUR, REACT_APP_LETH, REACT_APP_NETWORK_EXPLORER } = process.env;
+const { REACT_APP_VIRTUOSO_BRANCH, REACT_APP_NETWORK_EXPLORER } = process.env;
+const tokens = require("../../contract/tokens.json");
+const clients = require("../../contract/clients.json");
+const descriptions = require("../../contract/descriptions.json");
+const paymentMethods = require("../../contract/paymentmethods.json");
 
-
-const Mint = () => {
+const Withdraws = () => {
 
   const address = useSelector(({blockchain}) => blockchain.address);
-  const virtuosoBalance = useSelector(({blockchain}) => blockchain.virtuosoBalance);
-  const vb = virtuosoBalance/100;
-  const LUSD = "LUSD " + vb.toFixed(2);
 
-  const explorerLUSD = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LUSD;
-  const explorerLEUR = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LEUR;
-  const explorerLETH = REACT_APP_NETWORK_EXPLORER + "address/" + REACT_APP_LETH;
-  
+  const [withdraws, setWithdraws] = useState([]);
+  const [contracts, setContracts] = useState([]);
+  const [contractsLoaded, setContractsLoaded] = useState(false);
+  const [withdrawsLoaded, setWithdrawsLoaded] = useState(false);
+  const [title, setTitle] = useState("Loading Unprocessed Withdraws");
 
-  function add()
-  {
 
-            console.log("Add balance clicked", address);
-            if( address !== "") api.add( address, 100, "Added $1 ");
-  }
+     useEffect(() => {
+            async function loadContracts() {
+            		let results = [];
+					for(let i = 0; i < tokens.length; i++)
+					{
+					   const count = await getUnprocessedWithdrawsCount(i);
+					   results.push({...tokens[i], count});
+  					};
+  					setContracts(results);   
+				    setContractsLoaded(true);
+        }
+      loadContracts()
+      },[address]);	
+
+
+     useEffect(() => {
+            async function loadWithdraws() {
+            		let results = [];
+					for(let i = 0; i < tokens.length; i++)
+					{
+					   const withdraws = await getUnprocessedWithdraws(i);
+					   for(let j = 0; j < withdraws.length; j++)
+					   {
+					   		let client = {"id":0,"address":"Unknown","name":"Unknown","country":"Unknown","DOB":"Unknown",rating:0};
+					   		try{
+					   			client = clients.find(user => user.address == withdraws[j].from);
+					   		 } catch { 
+					   		  	client = {"id":0,"address":"Unknown","name":"Unknown","country":"Unknown","DOB":"Unknown",rating:0};
+					   		 };
+
+					   		results.push({...withdraws[j], ...tokens[i], 
+					   			payment: paymentMethods[withdraws[j].paymentMethod].description, 
+					   			url: REACT_APP_NETWORK_EXPLORER + "address/" + tokens[i].address + "#events",
+					   			client
+					   			});
+					   };
+
+  					};
+  					setWithdraws(results);
+					setTitle("Unprocessed Withdraws");
+					setWithdrawsLoaded(true);
+					console.log(results);
+        }
+      loadWithdraws()
+      },[contracts]);
 
 
   return (
-  <div className="gx-algolia-content-inner">
-
-  {(REACT_APP_VIRTUOSO_BRANCH === 'polygon')?(
-    <Row>
-      <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Your NFT Token"
-              title="Create your own private NFT token"
-              link="/mint/custom"
-              price="$10 for private NFT token or $100 for public NFT token"
-              description="Private NFT token will be visible only to you on NFT Virtuoso marketplace, except when you'll put it for sale. Public NFT token is always visible to everyone on NFT Virtuoso marketplace"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://content.nftvirtuoso.io/image/mintimages/private.png"
-              key="Private Mint"
-
-              />
-        </Col>
-        </Row>
-  ):(
-      <Row>
-      <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Approve LUSD Deposit"
-              title="Your LUSD balance is"
-              link={explorerLUSD}
-              price={LUSD}
-              description="LUSD token can be deposited and withdrawn thru SWIFT, Ethereum USDT and Tron USDT networks"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmbARy1hHoHrW2mH3R2rkWKpUSayeQ77XKNA7aW5BVy1hE"
-              key="LUSD Mint"
-
-              />
-        </Col>
-
-      <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Approve LUSD Withdraw"
-              title="Your LEUR balance is"
-              link={explorerLEUR}
-              price="20,000"
-              description="LEUR token can be deposited and withdrawn thru SWIFT"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmR9W1QjKnTfKhBQCGDM53jQtbFZQJNmDDTPJcacoDpfYC"
-              key="LEUR Mint"
-
-              />
-        </Col>
-
-        <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Safe Trading ETH"
-              title="Your LETH balance is"
-              link={explorerLETH}
-              price="5.6574329"
-              description="LETH token can be deposited and withdrawn thru Ethereum (ETH) and Polygon (WETH) networks"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmecWSZmjyRzzfVEx4qksNL4Qde5JeQMwGvcqyyb6L3Rod"
-              key="ETH Mint"
-
-              />
-        </Col>
-        <Col xxl={8}  xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Safe Trading Bitcoin"
-              title="Your LBTC balance is"
-              price="0.57584397"
-              description="BTC can be deposited and withdrawn thru Bitcoin, Ethereum (WBTC) and Polygon (WBTC) networks"
-              image= "https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmPFVf47TupZ3VnC1HRd2ARwaEh8nogyE3ypaTs1V7ZDEk"
-              key="BTC Mint"
-
-              />
-        </Col>
-        <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Safe Trading Gold"
-              title="You hold receipts for"
-              price="12.5 kg of gold"
-              description="Gold warehouse receipts can be deposited and withdrawn in bank office only"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmaLGsErRCMxpKX9PBjXfMPdhY8sce4SZw179juChiHCoo"
-              key="Gold receipts Mint"
-
-              />
-        </Col>
-                <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
-            <MintMenuItem
-              creator="Safe Trading Metal Account"
-              title="Your gold account balance is"
-              price="5210 grams"
-              description="Gold on metal account can be deposited and withdrawn in bank office only"
-              image="https://res.cloudinary.com/virtuoso/image/fetch/h_300,q_100,f_auto/https://ipfs.io/ipfs/QmTRUBh8JxTr3jfdYX2EVYUheVLHhGvUDRyCqhuZC1MTHc"
-              key="Gold account Mint"
-
-              />
-        </Col>
-        </Row>
-      )}
-
-    </div>
-  );
+  <div className="gx-algolia-content-inner" style={{"marginBottom": "5px"}}>
+  <div className="gx-product-item" >
+  <Card
+        title={title}
+        bordered={false}
+        >
+    <Form
+        key="formwithdraws"
+        layout="vertical"
+        name="form_in_modal"
+        initialValues={{
+          sell: 2,
+          buy: 0
+        }}
+      >
+      
+    {(contractsLoaded==true)?
+    (     
+		 contracts.map(contract=> (
+			 <Form.Item
+				 
+				 key={"contract"+contract.address}
+				 style={{"marginBottom": "0px", "marginTop": "0px", "marginLeft": "50px"}}
+				 >
+			 { "Safe Trading " + contract.currency + " (" + contract.token + "):   " + contract.count }
+			 </Form.Item>
+		  ))
+	):('')}
+	</Form>	
+	</Card>
+	</div>
+	<div id="withdrawRequestsDiv" className="gx-algolia-content-inner" style={{"marginBottom": "5px"}}>
+    {(withdrawsLoaded==true)?
+    (    
+		 withdraws.map(withdraw=> (
+			   <WithdrawRequest 
+					 key = {"withdrawrequestkey"+withdraw.address.toString()+withdraw.request.toString()}
+					 withdraw={withdraw}
+					 address={address}
+			   />  
+		  ))
+		  
+	):('')} 
+	</div>
+	
+     		
+   </div>
+  )
 };
 
-export default Mint;
+
+export default Withdraws;
+
+		 {/*
+			 <Form.Item
+				 name="withdraw"
+				 key={"withdraw"+withdraw.address+withdraw.request}
+				 style={{"marginBottom": "0px", "marginTop": "0px", "marginLeft": "50px"}}
+				 >
+			 {"Withdraw " + withdraw.amount + withdraw.token + " from " + withdraw.from + " payment:" + withdraw.payment} 
+			 </Form.Item>
+		  */}
