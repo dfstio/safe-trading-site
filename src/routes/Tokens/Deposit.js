@@ -180,7 +180,7 @@ const Deposit = ({item, address, deposit}) => {
 					 size={200}
 					 level='H'
 					 includeMargin={true}
-					 imageSettings={{src:`https://res.cloudinary.com/virtuoso/image/fetch/h_100,q_100,f_auto/${https://nftviruoso.io}`,
+					 imageSettings={{src:`https://res.cloudinary.com/virtuoso/image/fetch/h_100,q_100,f_auto/`,
                             width: 100,
                             height: 100
                             }}
