@@ -9,7 +9,9 @@ const App = ({match}) => (
        <Route path={`${match.url}tokens`} component={asyncComponent(() => import('./Tokens'))}/>
        <Route path={`${match.url}trading`} component={asyncComponent(() => import('./Trading'))}/>
        <Route path={`${match.url}payments`} component={asyncComponent(() => import('./Payments'))}/>
-       <Route path={`${match.url}admin`} component={asyncComponent(() => import('./Admin'))}/>
+       <Route path={`${match.url}settings`} component={asyncComponent(() => import('./Settings'))}/>
+       <Route path={`${match.url}deposits`} component={asyncComponent(() => import('./Deposits'))}/>
+       <Route path={`${match.url}withdraws`} component={asyncComponent(() => import('./Withdraws'))}/>
     </Switch>
   </div>
 );

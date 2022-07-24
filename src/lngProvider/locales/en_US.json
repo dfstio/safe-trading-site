@@ -5,6 +5,8 @@
   "sidebar.trading": "Trading",
   "sidebar.payments": "Payments",
   "sidebar.admin": "Administration",
+  "sidebar.deposits": "Deposits",
+  "sidebar.withdraws": "Withdraws",
   "sidebar.dashboard": "Dashboard",
   "sidebar.dashboard.crm": "Crm",
   "sidebar.components": "Components",

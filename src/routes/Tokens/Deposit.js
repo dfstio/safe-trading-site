@@ -1,22 +1,29 @@
 import React, {useState, useEffect} from "react";
-import {Button, Card, Modal, Form, InputNumber, Input, Radio, Checkbox} from "antd";
+import {Button, Card, Modal, Form, InputNumber, Input, Radio, Checkbox, Row, Col} from "antd";
 import {isMobile, isDesktop, isChrome} from 'react-device-detect';
 import {footerAgreement, footerAgreementLink } from "../../util/config";
 
+
 const paymentMethods = require("../../contract/paymentmethods.json");
 const DEBUG = ("true"===process.env.REACT_APP_DEBUG);
+var QRCode = require('qrcode.react');
+
+
+
 
 const Deposit = ({item, address, deposit}) => {
 
 
   const [modalText, setModalText] = useState("Please specify the amount to be deposited to account "
-  											+ address + " and payment method");
+  											+ address);
   
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("Deposit " + item.token);
   const [paymentMethodDescription, setPaymentMethodDescription] = useState(paymentMethods[0].description);
+  const [paymentMethodAddress, setPaymentMethodAddress] = useState(paymentMethods[0].address);
   const [amount, setAmount] = useState(1000);
+  const [qrText, setQRText] = useState(createQrCode(0,1000));
   const [paymentMethod, setPaymentMethod] = useState(0);
   const [sendEmail, setSendEmail] = useState(false);
   const [email, setEmail] = useState('');
@@ -25,11 +32,18 @@ const Deposit = ({item, address, deposit}) => {
   const [okDisabled, setOkDisabled] = useState(true);
 
 
+  function createQrCode(id, value) {
+        const qr = paymentMethods[id].prefix + paymentMethods[id].address + paymentMethods[id].suffix + (paymentMethods[id].decimals * value).toLocaleString('fullwide', {useGrouping:false});
+        console.log("qr: ", qr);
+        return qr;
+      } 
+
+
   const showModal = () => {
 
       setVisible(true);
       setModalText("Please specify the amount to be deposited to account "
-  											+ address + " and payment method");
+  											+ address );
       setLoading(false);
 
   };
@@ -44,6 +58,14 @@ const Deposit = ({item, address, deposit}) => {
         }
       checkOkButton()
       },[amount, accepted]);
+
+
+      useEffect(() => {
+            async function generateQr() {
+                setQRText(createQrCode(paymentMethod, amount));
+        }
+      generateQr()
+      },[amount, paymentMethod]);
 
 
   const handleOk = async () => {
@@ -70,6 +92,7 @@ const Deposit = ({item, address, deposit}) => {
       {
       	setPaymentMethod( values.paymentMethod );
       	setPaymentMethodDescription(paymentMethods[values.paymentMethod].description);
+      	setPaymentMethodAddress(paymentMethods[values.paymentMethod].address);
       }
       if( values.accepted !== undefined) setAccepted( values.accepted);
       if( values.email !== undefined) setEmail( values.email);
@@ -79,7 +102,7 @@ const Deposit = ({item, address, deposit}) => {
 
     return (
         <span>
-        {( isChrome===true && isDesktop===true && address !== "")?(
+        {( address !== "")?(
         <Button type="primary"
             onClick={showModal}
             key="buttond"
@@ -112,17 +135,16 @@ const Deposit = ({item, address, deposit}) => {
           name="amount"
           key="amountd"
           label="Amount"
+          style={{ "marginBottom": "0px"}}
           rules={[
               {
               required: true,
               message: 'Please input the the amount to be deposited',
             },
           ]}
-        >
-
-        
+        >      
           <InputNumber
-            style={{width: 300}}
+            style={{width: 300, "marginBottom": "0px"}}
             min={10}
             defaultValue="1000"
     		min="0"
@@ -135,18 +157,50 @@ const Deposit = ({item, address, deposit}) => {
         <Form.Item
             name="commission"
             key="commissiond"
+            style={{"marginTop": "0px"}}
             >
         Safe Transfers LLC commission on deposit is 1%
         </Form.Item>
-
+        <Form.Item 
+        	name="paymentMethod"
+        	label={"Payment method: " +  paymentMethodDescription}>    				
+				  <Radio.Group>
+				   {paymentMethods.map(method => (
+					<Radio value={method.id}  key={method.id+item.token + "d"}>{method.name}</Radio>
+				 ))}
+				  </Radio.Group>
+        </Form.Item>
+        <Form.Item
+            name="paymentMethodQR"
+            key="paymentMethodQR"
+            >
+            	<div>
+        	    <QRCode
+					 value={qrText}
+					 size={200}
+					 level='H'
+					 includeMargin={true}
+					 imageSettings={{src:`https://res.cloudinary.com/virtuoso/image/fetch/h_100,q_100,f_auto/${https://nftviruoso.io}`,
+                            width: 100,
+                            height: 100
+                            }}
+					 />
+				</div> 
+        </Form.Item>
+        <Form.Item
+            name="paymentMethodDescription"
+            key="paymentMethodDescriptiond"
+            >
+        {"Please transfer assets to " + paymentMethodAddress}
+        </Form.Item>
         <Form.Item
             name="sendEmail"
             key="sendEmaild"
             valuePropName="checked"
+            style={{"marginTop": "0px", "marginBottom": "0px"}}
             >
         <Checkbox>Notify me by e-mail when deposit will be processed</Checkbox>
         </Form.Item>
-
         <Form.Item
             name="email"
             key="emaild"
@@ -161,29 +215,12 @@ const Deposit = ({item, address, deposit}) => {
             >
           <Input type="textarea"  />
         </Form.Item>
-        {/*}
-        <Form.Item name="comment" label="Comment">
-          <Input type="textarea" />
-        </Form.Item>
-        */}
-        <Form.Item name="paymentMethod" >
-          <Radio.Group>
-           {paymentMethods.map(method => (
-            <Radio value={method.id}  key={method.id+item.token + "d"}>{method.name}</Radio>
-         ))}
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item
-            name="paymentMethodDescription"
-            key="paymentMethodDescriptiond"
-            >
-        {paymentMethodDescription}
-        </Form.Item>
 
-        <Form.Item
+         <Form.Item
             name="accepted"
             key="acceptedd"
             valuePropName="checked"
+            style={{"marginTop": "0px", "marginBottom": "0px"}}
             rules={[
           {
             validator: (_, value) =>
@@ -198,7 +235,6 @@ const Deposit = ({item, address, deposit}) => {
             key="depositd" 
             className="paymentMethod-sell-form_last-form-item"
             >
-
             <Button
                  type="primary"
                  key="depositbutton"
@@ -211,7 +247,6 @@ const Deposit = ({item, address, deposit}) => {
           </Form.Item>
 
       </Form>
-
         </Modal>
        </span>
     );

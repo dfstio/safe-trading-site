@@ -98,6 +98,11 @@ export async function deposit(address, amount, paymentMethod, contract)
 	return result;
 }
 
+export async function acceptDeposit(address, id, contract)
+{      
+	const result = await ltokenFunction(address, contract, 'acceptDeposit', [id]);
+	return result;
+}
 
 async function ltokenFunction(address, contract, name, args)
 {

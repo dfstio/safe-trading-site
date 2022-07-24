@@ -79,7 +79,7 @@ const Withdraw = ({item, address, withdraw}) => {
 
     return (
         <span>
-        {( isChrome===true && isDesktop===true && address !== "")?(
+        {( address !== "")?(
         <Button type="primary"
             onClick={showModal}
             key="buttonw"
