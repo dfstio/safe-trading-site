@@ -23,7 +23,7 @@ export async function getEthereumDeposits(id, address)
 	const contract = new ethers.Contract(wtokens[id].address, WJSON, ethereumprovider);
 	const filter = contract.filters.Transfer(address, REACT_APP_SAFE_GOERLI); 
 	let events = await contract.queryFilter(filter);
-    console.log("Found ", events.length, "events");
+    //console.log("Found ", events.length, "events");
     
     let results = [];
     const startTime = Date.now();
@@ -36,12 +36,14 @@ export async function getEthereumDeposits(id, address)
     	results.push({ amount: events[i].args.value,
     				  blockNumber: events[i].blockNumber,
     				  timeAgo: timeStr,
+    				  timestamp: block.timestamp,
     				  time: date.toUTCString(),
     				  token: wtokens[id].token
     	});
     };
-	console.log("Results", results);
-	return results;
+	//console.log("Results", results);
+	let sortedResults = results.sort((a, b) => b.timestamp - a.timestamp);
+	return sortedResults;
 };
 
 
