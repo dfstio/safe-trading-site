@@ -38,7 +38,7 @@ const SidebarLogo = ({sidebarCollapsed, setSidebarCollapsed}) => {
 
                 style={{"font-size": "22px", "padding-left": "10px"}}
                 >
-            NFT Virtuoso
+            Safe Trading
             </text>
       </Link>
     </div>

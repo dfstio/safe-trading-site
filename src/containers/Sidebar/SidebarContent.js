@@ -58,12 +58,6 @@ const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
 					  <IntlMessages id="sidebar.trading"/>
 					</Link>
 				</Menu.Item>
-				<Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="payments">
-					<Link to="/payments">
-					  <i className="icon icon-culture-calendar"/>
-					  <IntlMessages id="sidebar.payments"/>
-					</Link>
-				</Menu.Item>
 				<MenuItemGroup key="admin" className="gx-menu-group"
                            title={<IntlMessages id="sidebar.admin"/>}>
 
@@ -80,15 +74,13 @@ const SidebarContent = ({sidebarCollapsed, setSidebarCollapsed}) => {
 						       		<span><IntlMessages id="sidebar.withdraws"/></span>
 						 		</Link>
 					   		</Menu.Item>
+							<Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="payments">
+							   <Link to="/payments">
+								 <i className="icon icon-culture-calendar"/>
+								 <IntlMessages id="sidebar.payments"/>
+							   </Link>
+						   </Menu.Item>
                </MenuItemGroup>
-				<Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="settings">
-					<Link to="/settings">
-					  <i className="icon icon-components"/>
-					  <IntlMessages id="sidebar.settings"/>
-					</Link>
-				</Menu.Item>
-
-
           </Menu>
         </CustomScrollbars>
       </div>

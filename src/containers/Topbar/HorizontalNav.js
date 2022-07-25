@@ -55,30 +55,23 @@ const HorizontalNav = () => {
             <IntlMessages id="sidebar.trading"/>
           </Link>
       </Menu.Item>
-      <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="payments">
-          <Link to="/payments">
-            <i className="icon icon-culture-calendar"/>
-            <IntlMessages id="sidebar.payments"/>
-          </Link>
-      </Menu.Item>
 	  <Menu.Item key="admindeposits">
 		  <Link to="/deposits">
 			  <i className="icon icon-picker"/>
 			  <span><IntlMessages id="sidebar.deposits"/></span>
 		  </Link>
 	  </Menu.Item>
-	  
+
 	  <Menu.Item key="adminwithdraws">
 		  <Link to="/withdraws">
 			  <i className="icon icon-picker"/>
 			  <span><IntlMessages id="sidebar.withdraws"/></span>
 		  </Link>
 	  </Menu.Item>
-
-	  <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="settings">
-		  <Link to="/settings">
-			<i className="icon icon-components"/>
-			<IntlMessages id="sidebar.settings"/>
+	  <Menu.Item className="gx-menu-horizontal-flex gx-submenu-popup-curve"  key="payments">
+		  <Link to="/payments">
+			<i className="icon icon-culture-calendar"/>
+			<IntlMessages id="sidebar.payments"/>
 		  </Link>
 	  </Menu.Item>
       {/*

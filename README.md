@@ -46,3 +46,6 @@ Gnosis Safe
 gor:0x8Db233eEbEc9286d89f56Fb7e623f3E29477876e
 Add Delegate:
 https://gnosis-delegator.badger.com/
+
+Add to Metamask in Uniswap
+Configure Uniswap

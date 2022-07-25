@@ -12,7 +12,7 @@ const Payments = () => {
          <iframe
 		  src="https://gnosis-safe.io/app/gor:0x8Db233eEbEc9286d89f56Fb7e623f3E29477876e/transactions/queue"
 		  height="800px"
-		  width="1000px"
+		  width="1200px"
 		  key="safe-gnosis-goerli"
 		  style={{
 			border: 0,
