@@ -55,7 +55,7 @@ const Deposits = () => {
 					   		 };
 
 					   		results.push({...deposits[j], ...tokens[i], 
-					   			payment: paymentMethods[deposits[i].paymentMethod].description, 
+					   			payment: paymentMethods[deposits[j].paymentMethod].description, 
 					   			url: REACT_APP_NETWORK_EXPLORER + "address/" + tokens[i].address + "#events",
 					   			client
 					   			});
